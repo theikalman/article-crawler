@@ -102,7 +102,7 @@ def build_epub(
             lang="en",
         )
         byline = f"<p><em>{article.author}</em></p>" if article.author else ""
-        source_link = f'<p><a href="{escape(article.url)}">{escape(article.url)}</a></p>'
+        source_link = f'<br><br><hr><p><a href="{escape(article.url)}">{escape(article.url)}</a></p>'
         chapter.content = f"<h1>{article.title}</h1>{byline}{article.content_html}{source_link}"
         book.add_item(chapter)
         chapters.append(chapter)
