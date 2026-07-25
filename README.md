@@ -67,6 +67,22 @@ article-crawler --url-file urls.txt -o collection.epub -t "My Reading List"
 
 `--url-file` can be combined with URLs passed directly on the command line.
 
+### Daily reading list
+
+`fetch-today.sh` wraps the `--url-file` command above for a recurring daily
+routine: it reads `urls.txt` in the project root and writes an EPUB named and
+titled with today's date, e.g. `My Reading List - 2026-7-25.epub`.
+
+```bash
+./fetch-today.sh
+```
+
+**`urls.txt` is not maintained automatically** — this tool intentionally does
+not go find articles for you. Before running the script, open `urls.txt` and
+add the URLs of whatever you've actually chosen to read that day, one per
+line (blank lines and `#` comments are ignored). The point is to curate your
+own reading list, not to have one fed to you.
+
 ## Development
 
 Run tests:
