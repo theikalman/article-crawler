@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2560" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="40%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Gold Accent Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3E8FF" />
+      <stop offset="30%" stop-color="#F59E0B" />
+      <stop offset="70%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+
+    <!-- Subtle Grid Pattern -->
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="2" />
+    </pattern>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="1600" height="2560" fill="url(#bgGrad)" />
+  <rect width="1600" height="2560" fill="url(#grid)" />
+
+  <!-- Outer Framing Border -->
+  <rect x="80" y="80" width="1440" height="2400" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-opacity="0.4" rx="16" />
+  <rect x="100" y="100" width="1400" height="2360" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.1" rx="12" />
+
+  <!-- Header Accent Line -->
+  <line x1="650" y1="360" x2="950" y2="360" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round" />
+
+  <!-- Main Title Block -->
+  <text x="800" y="520" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', 'Arial', sans-serif" font-weight="900" font-size="105" fill="#FFFFFF" letter-spacing="12">
+    DAILY ARTICLE
+  </text>
+  <text x="800" y="650" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', 'Arial', sans-serif" font-weight="900" font-size="105" fill="url(#goldGrad)" letter-spacing="12">
+    READING LIST
+  </text>
+
+  <!-- Tagline / Subtitle -->
+  <text x="800" y="760" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', 'Arial', sans-serif" font-weight="300" font-size="36" fill="#94A3B8" letter-spacing="6">
+    CURATED KNOWLEDGE &amp; DAILY INSIGHTS
+  </text>
+
+  <!-- Divider with Diamond -->
+  <line x1="300" y1="880" x2="740" y2="880" stroke="#334155" stroke-width="2" />
+  <polygon points="800,865 815,880 800,895 785,880" fill="url(#goldGrad)" />
+  <line x1="860" y1="880" x2="1300" y2="880" stroke="#334155" stroke-width="2" />
+
+  <!-- Central Visual Illustration (Modern Minimalist Open Book & Tech Glow) -->
+  <g transform="translate(800, 1280)">
+    <!-- Ambient Glow behind Icon -->
+    <circle cx="0" cy="0" r="280" fill="url(#goldGrad)" opacity="0.08" filter="url(#glow)" />
+    
+    <!-- Outer Ring -->
+    <circle cx="0" cy="0" r="260" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="12 12" />
+    <circle cx="0" cy="0" r="220" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-opacity="0.5" />
+
+    <!-- Open Book Vector Icon -->
+    <g transform="translate(0, -20) scale(1.8)">
+      <!-- Left Page -->
+      <path d="M -110 -40 C -60 -60 -20 -40 -5 -20 L -5 90 C -20 70 -60 50 -110 70 Z" fill="#1E293B" stroke="url(#goldGrad)" stroke-width="4" />
+      <!-- Right Page -->
+      <path d="M 110 -40 C 60 -60 20 -40 5 -20 L 5 90 C 20 70 60 50 110 70 Z" fill="#1E293B" stroke="url(#goldGrad)" stroke-width="4" />
+      <!-- Page Text Lines (Left) -->
+      <line x1="-90" y1="-10" x2="-25" y2="-20" stroke="#94A3B8" stroke-width="4" stroke-linecap="round" />
+      <line x1="-90" y1="15" x2="-25" y2="5" stroke="#94A3B8" stroke-width="4" stroke-linecap="round" />
+      <line x1="-90" y1="40" x2="-45" y2="30" stroke="#94A3B8" stroke-width="4" stroke-linecap="round" />
+      <!-- Page Text Lines (Right) -->
+      <line x1="25" y1="-20" x2="90" y2="-10" stroke="#94A3B8" stroke-width="4" stroke-linecap="round" />
+      <line x1="25" y1="5" x2="90" y2="15" stroke="#94A3B8" stroke-width="4" stroke-linecap="round" />
+      <line x1="45" y1="30" x2="90" y2="40" stroke="#94A3B8" stroke-width="4" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <!-- Lower Divider Line -->
+  <line x1="500" y1="1800" x2="1100" y2="1800" stroke="#334155" stroke-width="2" />
+
+  <!-- Author / Curator Badge -->
+  <rect x="450" y="1960" width="700" height="120" rx="60" fill="#1E293B" stroke="url(#goldGrad)" stroke-width="2" />
+  <text x="800" y="2032" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', 'Arial', sans-serif" font-weight="500" font-size="42" fill="#F8FAFC" letter-spacing="4">
+    curated by <tspan font-weight="800" fill="url(#goldGrad)">AjiYakin</tspan>
+  </text>
+
+  <!-- Footer Date Note -->
+  <text x="800" y="2320" text-anchor="middle" font-family="'Inter', 'Helvetica Neue', 'Arial', sans-serif" font-weight="400" font-size="28" fill="#64748B" letter-spacing="8">
+    25 JULY 2026
+  </text>
+</svg>
+

@@ -1,5 +1,6 @@
 """Build an EPUB file from one or more extracted articles."""
 
+from html import escape
 from pathlib import Path
 
 from ebooklib import epub
@@ -21,7 +22,8 @@ def build_epub(articles: list[Article], output_path: Path, book_title: str = "Ar
             lang="en",
         )
         byline = f"<p><em>{article.author}</em></p>" if article.author else ""
-        chapter.content = f"<h1>{article.title}</h1>{byline}{article.content_html}"
+        source_link = f'<p><a href="{escape(article.url)}">{escape(article.url)}</a></p>'
+        chapter.content = f"<h1>{article.title}</h1>{byline}{article.content_html}{source_link}"
         book.add_item(chapter)
         chapters.append(chapter)
 
