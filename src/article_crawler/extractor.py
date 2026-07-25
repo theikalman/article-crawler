@@ -2,8 +2,10 @@
 
 from dataclasses import dataclass, field
 
+import lxml.html
 import trafilatura
 from bs4 import BeautifulSoup
+from trafilatura.metadata import extract_title as _extract_title_from_tree
 
 from article_crawler.images import ImageAsset, download_images
 
@@ -41,6 +43,21 @@ def _normalize_code_elements(html: str) -> str:
     return str(soup)
 
 
+def _resolve_title(html: str, metadata) -> str | None:
+    """Pick the article title.
+
+    trafilatura.extract_metadata() prefers og:title/twitter:title over the
+    page's own <h1>/<title>, but some sites set those social-preview tags to
+    the site name instead of the article title. The page's <h1>/<title> is
+    what a reader actually sees, so prefer it and only fall back to the
+    metadata-derived title when no h1/title tag is present.
+    """
+    tree_title = _extract_title_from_tree(lxml.html.fromstring(html))
+    if tree_title:
+        return tree_title
+    return metadata.title if metadata else None
+
+
 def extract_article(html: str, url: str, image_prefix: str = "img") -> Article:
     metadata = trafilatura.extract_metadata(html, default_url=url)
     content_html = trafilatura.extract(
@@ -59,7 +76,7 @@ def extract_article(html: str, url: str, image_prefix: str = "img") -> Article:
 
     return Article(
         url=url,
-        title=(metadata.title if metadata else None) or url,
+        title=_resolve_title(html, metadata) or url,
         author=metadata.author if metadata else None,
         date=metadata.date if metadata else None,
         content_html=content_html,
