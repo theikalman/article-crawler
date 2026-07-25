@@ -67,6 +67,7 @@ def extract_article(html: str, url: str, image_prefix: str = "img") -> Article:
         output_format="html",
         include_images=True,
         include_links=False,
+        favor_recall=True,
     )
 
     if not content_html:

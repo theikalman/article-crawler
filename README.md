@@ -67,11 +67,23 @@ article-crawler --url-file urls.txt -o collection.epub -t "My Reading List"
 
 `--url-file` can be combined with URLs passed directly on the command line.
 
+Add a cover image with `-c`/`--cover`. The cover is typically an SVG; any date
+string in the form `DD MONTH YYYY` found in the file is replaced with today's
+date before it's embedded, so a single template (`book-cover.svg`) works every
+day:
+
+```bash
+article-crawler --url-file urls.txt -c book-cover.svg \
+  -o collection.epub -t "My Reading List"
+```
+
 ### Daily reading list
 
 `fetch-today.sh` wraps the `--url-file` command above for a recurring daily
-routine: it reads `urls.txt` in the project root and writes an EPUB named and
-titled with today's date, e.g. `My Reading List - 2026-7-25.epub`.
+routine: it reads `urls.txt` in the project root, embeds `book-cover.svg` as
+the cover (with today's date swapped into the footer), and writes an EPUB
+named and titled with today's date, e.g.
+`My Reading List - 2026-7-25.epub`.
 
 ```bash
 ./fetch-today.sh

@@ -43,8 +43,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--settle-time",
         type=float,
-        default=3.0,
+        default=5.0,
         help="Seconds to wait after scrolling for lazy-loaded content to finish loading (ignored with --no-render)",
+    )
+    parser.add_argument(
+        "-c",
+        "--cover",
+        type=Path,
+        help=(
+            "Path to a cover image (typically an SVG) to embed as the EPUB cover. "
+            "Any date string in the form 'DD MONTH YYYY' found in the file is "
+            "replaced with today's date before embedding."
+        ),
     )
     return parser.parse_args(argv)
 
@@ -78,7 +88,7 @@ def main(argv: list[str] | None = None) -> int:
             html = fetch_html(url)
         articles.append(extract_article(html, url, image_prefix=f"a{index}"))
 
-    build_epub(articles, args.output, book_title=args.title)
+    build_epub(articles, args.output, book_title=args.title, cover_path=args.cover)
     print(f"Wrote {args.output}", file=sys.stderr)
     return 0
 

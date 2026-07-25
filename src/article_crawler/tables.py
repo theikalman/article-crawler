@@ -4,6 +4,7 @@ columns, unreadable borders on small screens).
 """
 
 from bs4 import BeautifulSoup
+import sys
 
 from article_crawler.images import ImageAsset
 
@@ -38,6 +39,10 @@ def render_tables(html: str, prefix: str = "img") -> tuple[str, list[ImageAsset]
     tables = [table for table in soup.find_all("table") if table.find_parent("table") is None]
     if not tables:
         return html, []
+
+    print(f"Rendering {len(tables)} table(s)...", file=sys.stderr)
+    print(TABLE_PAGE_TEMPLATE.format(table_html=str(tables[0])), file=sys.stderr)
+    print("...", file=sys.stderr)
 
     images: list[ImageAsset] = []
     from playwright.sync_api import sync_playwright
