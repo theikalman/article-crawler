@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from trafilatura.metadata import extract_title as _extract_title_from_tree
 
 from article_crawler.images import ImageAsset, download_images
+from article_crawler.tables import render_tables
 
 
 @dataclass
@@ -73,6 +74,8 @@ def extract_article(html: str, url: str, image_prefix: str = "img") -> Article:
 
     content_html = _normalize_code_elements(content_html)
     content_html, images = download_images(content_html, base_url=url, prefix=image_prefix)
+    content_html, table_images = render_tables(content_html, prefix=image_prefix)
+    images += table_images
 
     return Article(
         url=url,
