@@ -35,9 +35,6 @@ def build_epub(articles: list[Article], output_path: Path, book_title: str = "Ar
                 )
             )
 
-        if article.author:
-            book.add_author(article.author)
-
     book.toc = chapters
     book.add_item(epub.EpubNcx())
     book.add_item(epub.EpubNav())
