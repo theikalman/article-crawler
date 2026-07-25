@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "article-crawler"
+version = "0.1.0"
+description = "Fetch articles from the web and convert them into EPUB files"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31",
+    "trafilatura>=1.8",
+    "ebooklib>=0.18",
+    "beautifulsoup4>=4.12",
+    "playwright>=1.40",
+]
+
+[project.scripts]
+article-crawler = "article_crawler.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]

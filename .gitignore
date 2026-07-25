@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+*.epub
+.pytest_cache/
+
+# MacOS
+.DS_Store
+
+# exclude URLs file as it is expected to be manually edited
+urls.txt
